@@ -1,6 +1,6 @@
 {
   "name": "npmgenerate-cjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "generates scaffolding for a commonJS module",
   "main": "index.js",
   "dependencies": {
@@ -24,7 +24,7 @@
     "url": "https://github.com/serapath/npmgenerate-cjs/issues"
   },
   "bin": {
-    "npmgenerate": "./node_modules/npmgenerate/bin/ngen.js"
+    "npmgenerate-cjs": "./node_modules/npmgenerate/bin/ngen.js"
   },
   "homepage": "https://github.com/serapath/npmgenerate-cjs"
 }
