@@ -1,8 +1,8 @@
 {
   "name": "{{project}}",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "{{description}}",
-  "keywords": [],
+  "keywords": ["{{projectName}}"],
   "author": "{{gitName}} <{{email}}>",
   "repository": "git://github.com/serapath/{{project}}.git",
   "main": "index",
@@ -43,5 +43,5 @@
     "unit-test"
   ],
   "private": true,
-  "uber-ngen-version": "{{version}}"
+  "npmgenerate-cjs": "{{version}}"
 }

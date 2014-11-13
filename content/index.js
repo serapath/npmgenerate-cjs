@@ -1,44 +1,117 @@
+#! /usr/bin/env node
 /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  COMMONJS MODULE EXPORT                                        (Version 0.0.0)
 
-    @JOB: UBER_NGEN GENERATOR for Components schreiben
-    @JOB: dropin vs configurable
-    @JOB: Make "COMMENTS" create a nice visual structure of module in miniview
-    http://www.patorjk.com/software/taag/#p=display&h=0&v=0&f=Banner&t=TOC
+                         #######  #######   #####
+                            #     #     #  #     #
+                            #     #     #  #
+                            #     #     #  #
+                            #     #     #  #
+                            #     #     #  #     #
+                            #     #######   #####
+
+  _TABLE_OF_CONTENT     - Table of Content
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### DESCRIPTION
+
+    _{{projectName}}    - {{projectName}}
+    _USAGE_API          - Describe the interface of this module
+    _SANITIZE           - validate & sanitize given arguments
+    _MODULE             - implement the logic of this module
+    _EXPORT_API         - specify the api of a return object
+    _CONTEXT            - define all dependencies of this module
+
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### ROADMAP
+
+    @JOB: adapt TOC according to project needs
+    @JOB: decide dropin vs configurable in 'npmgenerate-cjs'
+
+                                              (by npmgenerate-cjs version {{version}})
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-(function COMMONJS_EXPORTER (FACTORY) {
+(function COMMONJS_MODULE_EXPORTER (FACTORY) {
   'use strict';
-  // If MODULE is a "Drop In" which executes once after loading:
-  module.exports = FACTORY(/*with predefined set of PARAMS*/); // CommonJS
-  // // ELSE IF MODULE is Otherwise a CONFIGURABLE:
-  // module.exports = FACTORY;
+  module.exports = FACTORY(/*with predefined set of PARAMS*/); // DROPIN
+  // module.exports = FACTORY; // CONFIGURABLE
 })(
-  /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    {{projectName}}                                                      (this lego)
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-  (function MODULE_{{projectName}} (META, ENTITIES, DEPs, window, global, undefined)
-  { // to shield MODULE from overriden 'undefined' and global object pollution
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+ #    #   ####   #####   #    #  #       ######  #    #    ##    #    #  ######
+ ##  ##  #    #  #    #  #    #  #       #       ##   #   #  #   ##  ##  #
+ # ## #  #    #  #    #  #    #  #       #####   # #  #  #    #  # ## #  #####
+ #    #  #    #  #    #  #    #  #       #       #  # #  ######  #    #  #
+ #    #  #    #  #    #  #    #  #       #       #   ##  #    #  #    #  #
+ #    #   ####   #####    ####   ######  ######  #    #  #    #  #    #  ######
+
+  _TABLE_OF_CONTENT _{{projectName}}
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### DESCRIPTION
+
+    ...
+
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### ROADMAP
+
+    @JOB: replace ascii banner with module name
+      http://www.patorjk.com/software/taag/#p=display&h=0&v=0&f=Banner
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+  (function MODULE_{{projectName}} (
+    // to shield MODULE from overriden 'undefined' and global object pollution
+    ///////////////////////////////////////////////////////////////////////////
+    META, ENTITIES, DEPs, window, global, undefined
+    ///////////////////////////////////////////////////////////////////////////
+  ) {
     'use strict';
     function {{projectName}}_API (
       /*-----------------------------------------------------------------------
-        MODULE API
 
-          USAGE:
-            ...
+           #    #   ####     ##     ####   ######        ##    #####   #
+           #    #  #        #  #   #    #  #            #  #   #    #  #
+           #    #   ####   #    #  #       #####       #    #  #    #  #
+           #    #       #  ######  #  ###  #           ######  #####   #
+           #    #  #    #  #    #  #    #  #           #    #  #       #
+            ####    ####   #    #   ####   ######      #    #  #       #
+
+        _TABLE_OF_CONTENT _USAGE_API
+        -----------------------------------------------------------------------
+        ### DESCRIPTION
+
+          MODULE API
+
+            USAGE:
+              ...
+
+        -----------------------------------------------------------------------
+        ### ROADMAP
+
+          ...
+
       -----------------------------------------------------------------------*/
+      /////////////////////////////////////////////////////////////////////////
       //INJECTED DEPENDENCIES:
       CONTAINER,  // DOM Form Element to apply {{projectName}} to
       //OPTIONS:
       SETTINGS,   // OPTIONAL -- name:string, required:boolean, minQueryLength:number
       SUGGESTIONS // Optional ARRAY from which to choose autocomplete SUGGESTIONS
+      /////////////////////////////////////////////////////////////////////////
     ) {
       /*-----------------------------------------------------------------------
-        PARAMETER VALIDATION + SANITIZATION
 
-        @JOB: Refine behavior in relation to given input
-        @JOB: Only do if not singleton and single instance already exists
-        @ASSERT: at least one 'billboards' is given in SETTINGS.billboards
-          else: return without creating anything new!
+                ####     ##    #    #  #  #####  #  ######  ######
+               #        #  #   ##   #  #    #    #      #   #
+                ####   #    #  # #  #  #    #    #     #    #####
+                    #  ######  #  # #  #    #    #    #     #
+               #    #  #    #  #   ##  #    #    #   #      #
+                ####   #    #  #    #  #    #    #  ######  ######
+
+        _TABLE_OF_CONTENT _SANITIZE
+        -----------------------------------------------------------------------
+        ### PARAMETER VALIDATION + SANITIZATION - ROADMAP
+
+          @JOB: Refine behavior in relation to given input
+          @JOB: Only do if not singleton and single instance already exists
+          @ASSERT: at least one 'billboards' is given in SETTINGS.billboards
+            else: return without creating anything new!
       -----------------------------------------------------------------------*/
       SETTINGS = typeof SETTINGS === 'undefined' ?
         { // DEFAULT SETTINGS
@@ -51,13 +124,31 @@
         }
         : SETTINGS // @JOB: Extend non-given OPTIONS with DEFAULTS, allow override defualts with "NULL"
       ;
-      /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        MODULE CREATION                                       (build this lego)
-      :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
       var MODULE =
         ENTITIES.length ? ENTITIES[ENTITIES.length-1] : // @JOB: if singleton vs factory
         (function {{projectName}} (STATE) {
           var
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+               #    #   ####   #####   #    #  #       ######
+               ##  ##  #    #  #    #  #    #  #       #
+               # ## #  #    #  #    #  #    #  #       #####
+               #    #  #    #  #    #  #    #  #       #
+               #    #  #    #  #    #  #    #  #       #
+               #    #   ####   #####    ####   ######  ######
+
+  _TABLE_OF_CONTENT _MODULE
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### DESCRIPTION
+
+    MODULE CREATION
+
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### ROADMAP
+
+    ...
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
           /*-------------------------------------------------------------------
             TEMPLATE - BUILDING
           -------------------------------------------------------------------*/
@@ -78,14 +169,33 @@
             MODULE SPECIFIC HELPERS
           -------------------------------------------------------------------*/
             // none
-          /*-------------------------------------------------------------------
-            PUBLIC ENTITY API - SET MODULE ENTITY DEFAULT INTERFACE
-          -------------------------------------------------------------------*/
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+      ######  #    #  #####    ####   #####   #####        ##    #####   #
+      #        #  #   #    #  #    #  #    #    #         #  #   #    #  #
+      #####     ##    #    #  #    #  #    #    #        #    #  #    #  #
+      #         ##    #####   #    #  #####     #        ######  #####   #
+      #        #  #   #       #    #  #   #     #        #    #  #       #
+      ######  #    #  #        ####   #    #    #        #    #  #       #
+
+  _TABLE_OF_CONTENT _EXPORT_API
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### DESCRIPTION
+
+    PUBLIC ENTITY API - SET MODULE ENTITY DEFAULT INTERFACE
+
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### ROADMAP
+
+    @JOB: make INIT/CONFIGURE and START one method with many params
+    @JOB: make module initialization an USAGE API option
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
             api = {
               /*---------------------------------------------------------------
                 BUILD MODULE
               ---------------------------------------------------------------*/
-              init: function initialize (settings) {
+              init: function initializeObject (settings) {
                 delete api.init;
                 /*-------------------------------------------------------------
                   CUSTOMIZE - module interface, internals & initialization
@@ -100,10 +210,6 @@
           api.id = ENTITIES.push(api);
           /*-------------------------------------------------------------------
             PUBLIC API EXPORT
-
-              @JOB: make INIT/CONFIGURE and START one method with many params
-              @JOB: make module initialization a constructor option
-
           -------------------------------------------------------------------*/
           // [Optional] initialize this module immediately
           api.init({}); // provide optional settings argument
@@ -116,9 +222,27 @@
     {{projectName}}_API.META = META;
     return {{projectName}}_API;
   })(
-  /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+              ####    ####   #    #  #####  ######  #    #  #####
+             #    #  #    #  ##   #    #    #        #  #     #
+             #       #    #  # #  #    #    #####     ##      #
+             #       #    #  #  # #    #    #         ##      #
+             #    #  #    #  #   ##    #    #        #  #     #
+              ####    ####   #    #    #    ######  #    #    #
+
+  _TABLE_OF_CONTENT _CONTEXT
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### DESCRIPTION
+
     MODULE CONTEXT
-  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  ### ROADMAP
+
+    ...
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     /*-------------------------------------------------------------------------
       META
 
@@ -148,11 +272,11 @@
       'use strict';
       return {
         /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-          EXTERNAL DEPENDENCIES                                  (others legos)
+          EXTERNAL DEPENDENCIES
         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
           // none
         /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-          INTERNAL DEPENDENCIES                                      (my legos)
+          INTERNAL DEPENDENCIES
         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
           // none
         /*---------------------------------------------------------------------
