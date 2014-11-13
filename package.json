@@ -1,6 +1,6 @@
 {
   "name": "npmgenerate-cjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "generates scaffolding for a commonJS module",
   "main": "./node_modules/npmgenerate/bin/ngen.js",
   "bin": {

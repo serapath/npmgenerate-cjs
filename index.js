@@ -24,7 +24,7 @@ function fetchFromGitConfig(key) {
 
         proc.stdout.once('data', function (chunk) {
             called = true;
-            callback(null, chunk);
+            callback(null, chunk.toString().replace(/(\r\n|\n|\r)/gm,""));
         });
         proc.stdout.once('error', callback);
         proc.stdout.once('end', function () {
@@ -43,7 +43,7 @@ function fetchFromGitConfig(key) {
 module.exports = {
     project: 'Project name: ',
     version: function (values, callback) {
-        callback(null, '0.0.0');
+        callback(null, version);
     },
     description: function (values, callback) {
         var pkg = path.join(values.project, 'package.json');
