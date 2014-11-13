@@ -1,4 +1,5 @@
-# {{project}}
+{{project}}
+======
 
 <!--
     [![build status][build-png]][build]

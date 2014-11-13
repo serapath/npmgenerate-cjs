@@ -9,6 +9,30 @@
 *.so
 *.node
 bin/*
+build/Release/
+-pids
+-*.pid
+-*.seed
+
+
+# test related #
+################
+lib-cov/
+coverage/
+
+
+# build tool related #
+######################
+.grunt
+.gulp
+
+
+# runtime related #
+###################
+pids/
+*.pid
+*.seed
+
 
 # Node Waf Byproducts #
 #######################
@@ -16,11 +40,15 @@ bin/*
 build/
 autom4te.cache/
 
-# Node Modules #
-################
+
+# Dependency directory #
+########################
 # Better to let npm install these from the package.json defintion
 # rather than maintain this manually
+# Commenting this out is preferred by some people, see
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-fo
 node_modules/
+
 
 # Packages #
 ############
@@ -35,12 +63,15 @@ node_modules/
 *.tar
 *.zip
 
+
 # Logs and databases #
 ######################
+logs/
 *.log
 dump.rdb
 *.tap
 *.xml
+
 
 # OS generated files #
 ######################
@@ -50,15 +81,19 @@ ehthumbs.db
 Icon?
 Thumbs.db
 coverage
+.lock-wscript
+
 
 # Text Editor Byproducts #
 ##########################
 *.sw?
 .idea/
 
+
 # Python object code
 ##########################
 *.py[oc]
+
 
 # All translation files #
 #########################
